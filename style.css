@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  );
+}
+.calculator {
+  color: white;
+  margin: 10% auto;
+  width: 30%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 8px 14px 54px 0px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 8px 14px 54px 0px rgba(66, 68, 90, 1);
+  box-shadow: 8px 14px 54px 0px rgba(66, 68, 90, 1);
+}
+.display {
+  flex-basis: 15%;
+  margin: 5%;
+  border: 4px solid #00c197;
+  border-radius: 12px;
+}
+.display i {
+  display: block;
+  text-align: right;
+  margin-top: 1%;
+  margin-right: 1%;
+  cursor: pointer;
+}
+.display i:hover {
+  color: #00c197;
+}
+.display p {
+  font-size: 50px;
+  text-align: right;
+  margin-right: 3%;
+  margin-left: 1%;
+  border-bottom: 1px solid black;
+}
+.display span {
+  display: block;
+  text-align: right;
+  margin-right: 3%;
+  margin-bottom: 2%;
+  color: #444;
+}
+.interface {
+  flex-basis: 85%;
+  margin: 0 5% 5%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.interface div {
+  width: 23%;
+  margin: 1%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 50px;
+  line-height: 100px;
+  font-weight: bold;
+}
+.interface div:hover {
+  color: #a8eb12;
+  cursor: pointer;
+}
