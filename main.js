@@ -1,4 +1,3 @@
-const result = document.querySelector('.result');
 const lastOperation = document.querySelector('.last-operation');
 
 const previousNumber = document.querySelector('.previousNumber');
@@ -28,18 +27,19 @@ function display() {
   previousNumber.textContent = previousNumberValue;
   currentNumber.textContent = currentNumberValue;
   mathSign.textContent = mathSignValue;
-  lastOperation.textContent =
-    previousNumberValue + mathSignValue + currentNumberValue;
 }
 function deleteLastNumber() {
-  if (currentNumberValue !== '') {
+  if (currentNumberValue !== '' && typeof currentNumberValue !== 'number') {
     currentNumberValue = currentNumberValue.slice(
       0,
       currentNumberValue.length - 1
     );
   } else if (mathSignValue !== '') {
     mathSignValue = '';
-  } else {
+  } else if (
+    previousNumberValue !== '' &&
+    typeof previousNumberValue !== 'number'
+  ) {
     previousNumberValue = previousNumberValue.slice(
       0,
       previousNumberValue.length - 1
@@ -47,6 +47,8 @@ function deleteLastNumber() {
   }
 
   display();
+  lastOperation.textContent =
+    previousNumberValue + mathSignValue + currentNumberValue;
 }
 function operation(button) {
   if (previousNumberValue === '') {
@@ -60,7 +62,43 @@ function operation(button) {
   lastOperation.textContent =
     previousNumberValue + mathSignValue + currentNumberValue;
 }
-function equal() {}
+function equal() {
+  let result = previousNumberValue;
+  if (
+    previousNumberValue !== '' &&
+    currentNumberValue !== '' &&
+    mathSignValue !== ''
+  ) {
+    const a = Number(previousNumberValue);
+    const b = Number(currentNumberValue);
+    switch (mathSignValue) {
+      case '^': {
+        result = Math.pow(a, b);
+        break;
+      }
+      case '÷': {
+        result = a / b;
+        break;
+      }
+      case '×': {
+        result = a * b;
+        break;
+      }
+      case '-': {
+        result = a - b;
+        break;
+      }
+      case '+': {
+        result = a + b;
+        break;
+      }
+    }
+  }
+  previousNumberValue = `${result}`;
+  mathSignValue = '';
+  currentNumberValue = '';
+  display();
+}
 
 function addNumber(button) {
   if (
@@ -98,6 +136,8 @@ function addNumber(button) {
     } else currentNumberValue += button.textContent;
   }
   display();
+  lastOperation.textContent =
+    previousNumberValue + mathSignValue + currentNumberValue;
 }
 
 clearButton.addEventListener('click', clear);
@@ -108,4 +148,11 @@ operationButtons.forEach((button) => {
 equalButton.addEventListener('click', equal);
 numberButtons.forEach((button) => {
   button.addEventListener('click', addNumber.bind(null, button));
+});
+
+document.querySelector('.fa-copy').addEventListener('click', () => {
+  navigator.clipboard.writeText(
+    previousNumberValue + mathSignValue + currentNumberValue
+  );
+  alert('Copied!');
 });
