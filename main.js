@@ -127,13 +127,23 @@ function addNumber(button) {
       if (previousNumberValue[0] === '0' && !previousNumberValue.includes('.'))
         previousNumberValue += '.' + button.textContent;
       else previousNumberValue += button.textContent;
-    } else previousNumberValue += button.textContent;
+    } else if (
+      previousNumberValue[0] === '0' &&
+      !previousNumberValue.includes('.')
+    )
+      previousNumberValue += '.' + button.textContent;
+    else previousNumberValue += button.textContent;
   } else if (mathSignValue !== '' && button.textContent !== '.') {
     if (button.textContent === '0') {
       if (currentNumberValue[0] === '0' && !currentNumberValue.includes('.'))
         currentNumberValue += '.' + button.textContent;
       else currentNumberValue += button.textContent;
-    } else currentNumberValue += button.textContent;
+    } else if (
+      currentNumberValue[0] === '0' &&
+      !currentNumberValue.includes('.')
+    )
+      currentNumberValue += '.' + button.textContent;
+    else currentNumberValue += button.textContent;
   }
   display();
   lastOperation.textContent =
