@@ -13,10 +13,11 @@ body {
     #00bf72,
     #a8eb12
   );
+  overflow: hidden;
 }
 .calculator {
   color: white;
-  margin: 10% auto;
+  margin: 5% auto;
   width: 30%;
   height: 80%;
   display: flex;
@@ -55,9 +56,12 @@ body {
 .display span {
   display: block;
   text-align: right;
-  margin-right: 3%;
+  margin-right: 0.3%;
   margin-bottom: 2%;
   color: #444;
+}
+.display span.last-operation {
+  margin-right: 3%;
 }
 .interface {
   flex-basis: 85%;
