@@ -24,8 +24,30 @@ function clear() {
   currentNumberValue = '';
   mathSignValue = '';
 }
+function display() {
+  previousNumber.textContent = previousNumberValue;
+  currentNumber.textContent = currentNumberValue;
+  mathSign.textContent = mathSignValue;
+  lastOperation.textContent =
+    previousNumberValue + mathSignValue + currentNumberValue;
+}
+function deleteLastNumber() {
+  if (currentNumberValue !== '') {
+    currentNumberValue = currentNumberValue.slice(
+      0,
+      currentNumberValue.length - 1
+    );
+  } else if (mathSignValue !== '') {
+    mathSignValue = '';
+  } else {
+    previousNumberValue = previousNumberValue.slice(
+      0,
+      previousNumberValue.length - 1
+    );
+  }
 
-function deleteLastNumber() {}
+  display();
+}
 function operation(button) {
   if (previousNumberValue === '') {
     previousNumberValue = 0;
@@ -75,10 +97,7 @@ function addNumber(button) {
       else currentNumberValue += button.textContent;
     } else currentNumberValue += button.textContent;
   }
-  previousNumber.textContent = previousNumberValue;
-  currentNumber.textContent = currentNumberValue;
-  lastOperation.textContent =
-    previousNumberValue + mathSignValue + currentNumberValue;
+  display();
 }
 
 clearButton.addEventListener('click', clear);
